@@ -1,23 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Book, Search, Trash2, Plus, Library } from 'lucide-react';
 
-// Define la interfaz para el tipo Libro
-interface Libro {
-  id: number;
-  titulo: string;
-  autor: string;
-}
-
 const BibliotecaDigital = () => {
-  const [libros, setLibros] = useState<Libro[]>([]);
+  const [libros, setLibros] = useState([]);
   const [titulo, setTitulo] = useState('');
   const [autor, setAutor] = useState('');
   const [busqueda, setBusqueda] = useState('');
-  const [libroSeleccionado, setLibroSeleccionado] = useState<Libro | null>(null);
+  const [libroSeleccionado, setLibroSeleccionado] = useState(null);
 
-  // Cargar datos iniciales (simulando la carga desde JSON)
   useEffect(() => {
-    const datosIniciales: Libro[] = [
+    const datosIniciales = [
       { id: 1, titulo: "Cien años de soledad", autor: "Gabriel García Márquez" },
       { id: 2, titulo: "Don Quijote de la Mancha", autor: "Miguel de Cervantes" },
       { id: 3, titulo: "1984", autor: "George Orwell" },
@@ -32,7 +24,7 @@ const BibliotecaDigital = () => {
 
   const agregarLibro = () => {
     if (titulo.trim() && autor.trim()) {
-      const nuevoLibro: Libro = {
+      const nuevoLibro = {
         id: Date.now(),
         titulo: titulo.trim(),
         autor: autor.trim()
@@ -57,7 +49,6 @@ const BibliotecaDigital = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 p-8">
-      {/* Patrón de fondo tipo biblioteca */}
       <div className="fixed inset-0 opacity-5 pointer-events-none" style={{
         backgroundImage: `repeating-linear-gradient(
           0deg,
@@ -76,7 +67,6 @@ const BibliotecaDigital = () => {
       }}></div>
 
       <div className="max-w-7xl mx-auto relative">
-        {/* Encabezado */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-4">
             <Library className="w-12 h-12 text-amber-800" />
@@ -86,7 +76,6 @@ const BibliotecaDigital = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Panel de Control */}
           <div className="lg:col-span-1">
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-6 border-2 border-amber-200">
               <h2 className="text-2xl font-bold text-amber-900 mb-6 flex items-center gap-2">
@@ -126,7 +115,6 @@ const BibliotecaDigital = () => {
                 </button>
               </div>
 
-              {/* Búsqueda */}
               <div className="mt-8">
                 <h3 className="text-xl font-bold text-amber-900 mb-4 flex items-center gap-2">
                   <Search className="w-5 h-5" />
@@ -141,7 +129,6 @@ const BibliotecaDigital = () => {
                 />
               </div>
 
-              {/* Eliminar */}
               <div className="mt-8">
                 <button
                   onClick={eliminarLibro}
@@ -157,7 +144,6 @@ const BibliotecaDigital = () => {
                 </button>
               </div>
 
-              {/* Estadísticas */}
               <div className="mt-8 p-4 bg-amber-100 rounded-lg border-2 border-amber-300">
                 <p className="text-amber-900 font-semibold text-center">
                   Total de libros: <span className="text-2xl">{libros.length}</span>
@@ -166,7 +152,6 @@ const BibliotecaDigital = () => {
             </div>
           </div>
 
-          {/* Lista de Libros */}
           <div className="lg:col-span-2">
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-6 border-2 border-amber-200">
               <h2 className="text-2xl font-bold text-amber-900 mb-6 flex items-center gap-2">
